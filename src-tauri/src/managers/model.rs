@@ -325,6 +325,32 @@ impl ModelManager {
             },
         );
 
+        // Parakeet Atypical - fine-tuned for atypical speech patterns
+        available_models.insert(
+            "parakeet-tdt-atypical".to_string(),
+            ModelInfo {
+                id: "parakeet-tdt-atypical".to_string(),
+                name: "Parakeet Atypical".to_string(),
+                description: "Fine-tuned for atypical speech patterns. Place model files manually in the models directory.".to_string(),
+                filename: "parakeet-tdt-atypical-int8".to_string(),
+                url: None, // Manual placement required
+                sha256: None,
+                size_mb: 456,
+                is_downloaded: false,
+                is_downloading: false,
+                partial_size: 0,
+                is_directory: true,
+                engine_type: EngineType::Parakeet,
+                accuracy_score: 0.88,
+                speed_score: 0.92,
+                supports_translation: false,
+                is_recommended: false,
+                supported_languages: vec!["en".to_string()],
+                supports_language_selection: false,
+                is_custom: false,
+            },
+        );
+
         available_models.insert(
             "moonshine-base".to_string(),
             ModelInfo {
