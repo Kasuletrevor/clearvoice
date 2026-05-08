@@ -1,5 +1,5 @@
 {
-  description = "Handy - A free, open source, and extensible speech-to-text application that works completely offline";
+  description = "ClearVoice - A fork of Handy focused on atypical speech transcription using fine-tuned Parakeet models";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -86,8 +86,8 @@
           };
         in
         {
-          handy = pkgs.rustPlatform.buildRustPackage {
-            pname = "handy";
+          clearvoice = pkgs.rustPlatform.buildRustPackage {
+            pname = "clearvoice";
             inherit version;
             src = self;
 
@@ -179,15 +179,15 @@
             '';
 
             meta = {
-              description = "A free, open source, and extensible speech-to-text application that works completely offline";
-              homepage = "https://github.com/cjpais/Handy";
+              description = "ClearVoice - A fork of Handy focused on atypical speech transcription";
+              homepage = "https://github.com/Kasuletrevor/clearvoice";
               license = lib.licenses.mit;
-              mainProgram = "handy";
+              mainProgram = "clearvoice";
               platforms = supportedSystems;
             };
           };
 
-          default = self.packages.${system}.handy;
+          default = self.packages.${system}.clearvoice;
         }
       );
 
@@ -196,7 +196,7 @@
         { lib, pkgs, ... }:
         {
           imports = [ ./nix/module.nix ];
-          programs.handy.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.handy;
+          programs.clearvoice.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.clearvoice;
         };
 
       # Home-manager module for per-user service
@@ -204,7 +204,7 @@
         { lib, pkgs, ... }:
         {
           imports = [ ./nix/hm-module.nix ];
-          services.handy.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.handy;
+          services.clearvoice.package = lib.mkDefault self.packages.${pkgs.stdenv.hostPlatform.system}.clearvoice;
         };
 
       # Development shell for building from source
@@ -244,7 +244,7 @@
             XDG_DATA_DIRS = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:${pkgs.hicolor-icon-theme}/share";
 
             shellHook = ''
-              echo "Handy development environment"
+              echo "ClearVoice development environment"
               bun install
               echo "Run 'bun run tauri dev' to start"
             '';
